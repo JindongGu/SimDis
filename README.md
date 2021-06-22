@@ -38,10 +38,8 @@ python -m torch.distributed.launch --nproc_per_node=8	--nnodes=$1 --node_rank=$2
 	--model_t resnet50.ttemadv
 ```
 
-**Note:** the choice for the argument 'model_s':
-
-2v: resnet18.sema_dv.tema_dv
-
+**Note:** the choice for the argument 'model_s':  
+2v: resnet18.sema_dv.tema_dv  
 7v: resnet18.s_dv.sema_sv.sema_dv.t_sv.t_dv.tema_sv.tema_dv
 
 ## Linear Evaluation
