@@ -3,21 +3,21 @@
 
 [To Update]
 
-## Offline Distillation 
+## Offline Distillation Baseline
 ### Step 1. Train Teacher
 ```
 python -m torch.distributed.launch --nproc_per_node=8	--nnodes=$1 --node_rank=$2 SimDis/tools/run_SimDis.py \
-	--distributed -d 0-7 --rank $2 --word_size $1  \
-  -f SimDis/exps/arxiv/base_exp_simDis.py \
-	--optimizer LARS --syncBN --epochs 1000 \ 
-  --method SimDis_teacher \
-	--model_t resnet50.ttemadv
+--distributed -d 0-7 --rank $2 --word_size $1  \
+--exp_file SimDis/exps/arxiv/base_exp_simDis.py \
+--optimizer LARS --syncBN --epochs 1000 \ 
+--method SimDis_teacher \
+--model_t resnet50.ttemadv
 ```
 ### Step 2. Train Student with offline distillation
 ```
 python -m torch.distributed.launch --nproc_per_node=8	--nnodes=$1 --node_rank=$2 SimDis/tools/run_SimDis.py \
 	--distributed -d 0-7 --rank $2 --word_size $1  \
-  -f SimDis/exps/arxiv/base_exp_simDis.py \
+  --exp_file SimDis/exps/arxiv/base_exp_simDis.py \
 	--optimizer LARS --syncBN --epochs 1000 \ 
   --method SimDis_off \
   --model_s resnet18.s_dv.sema_sv.sema_dv.t_sv.t_dv.tema_sv.tema_dv \
@@ -26,12 +26,12 @@ python -m torch.distributed.launch --nproc_per_node=8	--nnodes=$1 --node_rank=$2
   --offline_resume teacher_ckpt.pth.tar
 ```
 
-## Online Distillation
+## Online Distillation Baseline
 ### Train Teacher and Student simultaneously
 ```
 python -m torch.distributed.launch --nproc_per_node=8	--nnodes=$1 --node_rank=$2 SimDis/tools/run_SimDis.py \
 	--distributed -d 0-7 --rank $2 --word_size $1  \
-  -f SimDis/exps/arxiv/base_exp_simDis.py \
+  --exp_file SimDis/exps/arxiv/base_exp_simDis.py \
 	--optimizer LARS --syncBN --epochs 1000 \
   --method SimDis_on \
   --model_s resnet18.s_dv.sema_sv.sema_dv.t_sv.t_dv.tema_sv.tema_dv \
@@ -46,7 +46,7 @@ python -m torch.distributed.launch --nproc_per_node=8	--nnodes=$1 --node_rank=$2
 ```
 python -m torch.distributed.launch --nproc_per_node=8	--nnodes=$1 --node_rank=$2 SimDis/tools/run_SimDis.py \
 	--distributed -d 0-7 --rank $2 --word_size $1  \
-  -f SimDis/exps/arxiv/linear_eval_exp_simDis.py \
+  	--exp_file SimDis/exps/arxiv/linear_eval_exp_simDis.py \
 	--optimizer LARS --syncBN \
   --method SimDis_linear \
   --model_s resnet18.s_dv.sema_sv.sema_dv.t_sv.t_dv.tema_sv.tema_dv \
