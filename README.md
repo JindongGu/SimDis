@@ -1,5 +1,5 @@
 
-# SimDis: Simple Distillation Baselines for Improving Small Self-supervised Models
+# SimDis: [Simple Distillation Baselines for Improving Small Self-supervised Models](https://arxiv.org/pdf/2106.11304.pdf)
 
 [To Update]
 
