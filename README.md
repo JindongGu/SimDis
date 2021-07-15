@@ -25,7 +25,7 @@ python -m torch.distributed.launch --nproc_per_node=8	--nnodes=$1 --node_rank=$2
   	--model_s resnet18.s_dv.sema_sv.sema_dv.t_sv.t_dv.tema_sv.tema_dv \
 	--model_t resnet50.ttemadv \
   	--offline \
-  	--offline_resume teacher_ckpt.pth.tar
+  	--offline_resume path_to_teacher/teacher_ckpt.pth.tar
 ```
 
 ## Online Distillation Baseline
