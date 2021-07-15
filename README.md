@@ -13,7 +13,7 @@ python -m torch.distributed.launch --nproc_per_node=8	--nnodes=$1 --node_rank=$2
 	--exp_file SimDis/exps/arxiv/base_exp_simDis.py \
 	--optimizer LARS --syncBN --epochs 1000 \ 
 	--method SimDis_teacher \
-	--model_t resnet50.ttemadv
+	--model_s resnet50.ttemadv
 ```
 ### Step 2. Train Student with offline distillation
 ```
