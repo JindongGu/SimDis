@@ -1,8 +1,10 @@
 
 # SimDis: [Simple Distillation Baselines for Improving Small Self-supervised Models](https://arxiv.org/pdf/2106.11304.pdf)
 
-[To Update]
-
+Before training, please ensure the path (namely ${root_of_clone}) is added in your PYTHONPATH, e.g.
+```
+export PYTHONPATH=$PYTHONPATH:${root_of_clone}
+```
 ## Offline Distillation Baseline
 ### Step 1. Train Teacher
 ```
